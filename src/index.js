@@ -1,45 +1,32 @@
-document.addEventListener("DOMContentLoaded" ,() => {
-let form = document.querySelector("form")
-form.addEventListener("submit", (e) => {
-  e.preventDefault()
-  let value = e.target.name.value;
-  let namesDiv = document.querySelector("#names-container")
-  let p = document.createElement("p")
-  p.textContent = `${value}`
-  p.style.textAlign = "center"
-  let button = document.createElement("button")
-  button.textContent = `Remove Student`
-  button.addEventListener("click",(e) => {
-    e.target.parentNode.remove()
-  })
-  p.appendChild(button)
-  namesDiv.appendChild(p)
-  form.reset()  
-  })
-})
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.querySelector("#create-task-form");
+  const tasksList = document.querySelector("#tasks");
 
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    
+    // Get the value from the input field
+    const inputValue = document.querySelector("#new-task-description").value;
 
+    // Create a new list item
+    const listItem = document.createElement("li");
+    listItem.textContent = inputValue;
 
+    // Create a remove button
+    const removeButton = document.createElement("button");
+    removeButton.textContent = "Remove Task";
+    removeButton.addEventListener("click", (e) => {
+      // Remove the parent <li> element when the button is clicked
+      listItem.remove();
+    });
 
-//document.addEventListener("DOMContentLoaded", () => {
-//let form = document.querySelector('form')
-//form.addEventListener('submit', (e) => {
-  //  e.preventDefault()
-    //buildToDo(e.target.my-todos.value)
-    //form.reset()
-  //})
-//})
-//function buildToDoTodos(todos){
-  //let p = document.createElement('p')
-  //let btn = document.createElement('button')
-  //btn.addEventListener('click', handleDelete)
-  //btn.textContent = 'x'
-  //p.textContent = `${todos}`
-  //p.appendChild(btn)
-  //console.log(p)
-  //document.querySelector('#My-todos').appendchild(p)
-//}
+    // Append the remove button to the list item
+    listItem.appendChild(removeButton);
 
-//function handleDelete(e){
-//  e.target.parentNode.remove()
-//}
+    // Append the list item to the tasks list
+    tasksList.appendChild(listItem);
+
+    // Reset the form input
+    form.reset();
+  });
+});
